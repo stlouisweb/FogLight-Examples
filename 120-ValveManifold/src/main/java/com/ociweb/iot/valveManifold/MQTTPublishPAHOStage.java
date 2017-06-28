@@ -208,7 +208,7 @@ public class MQTTPublishPAHOStage extends PronghornStage {
 		        client.publish(topic.toString(), message);
 		        errorCount=0;
 
-		        logger.info("publish MQTT QOS: {} topic: {}",QOS, topic);
+		        logger.info("publish MQTT QOS: {} topic: {} data: {}",QOS, topic, data);
 		        return true;
 	      } catch (MqttException e) {
 	    	
