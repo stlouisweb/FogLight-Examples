@@ -112,9 +112,39 @@ public class MQTTPublishPAHOStage extends PronghornStage {
 			long timeStamp = Pipe.takeLong(input);
 
 			switch(msgIdx) {
-				case MSG_VALVESERIALNUMBER_311:
-				case MSG_LIFECYCLECOUNT_312:
-				case MSG_SUPPLYPRESSURE_313:
+				case MSG_VALVESERIALNUMBER_311: {
+					int value = Pipe.takeInt(input);
+					data = new byte[12]; //must be new
+					logger.info("value: {}, Time: {}", value, timeStamp);
+					logger.info("data: {}", data);
+					write64(data, 0, timeStamp);
+					logger.info("data: {}", data);
+					write32(data, 8, value);
+					logger.info("data: {}", data);
+					break;
+				}
+				case MSG_LIFECYCLECOUNT_312: {
+					int value = Pipe.takeInt(input);
+					data = new byte[12]; //must be new
+					logger.info("value: {}, Time: {}", value, timeStamp);
+					logger.info("data: {}", data);
+					write64(data, 0, timeStamp);
+					logger.info("data: {}", data);
+					write32(data, 8, value);
+					logger.info("data: {}", data);
+					break;
+				}
+				case MSG_SUPPLYPRESSURE_313: {
+					int value = Pipe.takeInt(input);
+					data = new byte[12]; //must be new
+					logger.info("value: {}, Time: {}", value, timeStamp);
+					logger.info("data: {}", data);
+					write64(data, 0, timeStamp);
+					logger.info("data: {}", data);
+					write32(data, 8, value);
+					logger.info("data: {}", data);
+					break;
+				}
 				case MSG_DURATIONOFLAST1_4SIGNAL_314:
 				case MSG_DURATIONOFLAST1_2SIGNAL_315:
 				case MSG_EQUALIZATIONAVERAGEPRESSURE_316:
@@ -208,7 +238,7 @@ public class MQTTPublishPAHOStage extends PronghornStage {
 		        client.publish(topic.toString(), message);
 		        errorCount=0;
 
-		        logger.info("publish MQTT QOS: {} topic: {}",QOS, topic);
+		        logger.info("publish MQTT QOS: {} topic: {} data: {}",QOS, topic, data);
 		        return true;
 	      } catch (MqttException e) {
 	    	

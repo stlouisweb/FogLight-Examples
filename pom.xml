@@ -21,6 +21,7 @@
     <module>01B-Clock</module>
     <module>010-TankLevelMonitor</module>
     <module>110-GasPumpSimulator</module>
+    <module>120-ValveManifold</module>
     <module>500-MatrixTest</module>
     <module>400-IoTGateway</module>
     <module>600-HZDemo</module>
